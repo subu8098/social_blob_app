@@ -18,6 +18,7 @@ class UsersController < ApplicationController
       @user = current_user
       redirect_to login_path unless @user
     end
+    
   def index
     @users = User.where.not(id: current_user.id)
   end

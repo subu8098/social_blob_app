@@ -1,10 +1,49 @@
-<h2 style="background-color: #ff56;"><i>Feed</i></h2>
 <% @posts.each do |post| %>
   <div class="post-box">
-    <p><strong><%= post.user.username %></strong> (<%= post.visibility.capitalize %>)<br>
-    <em><%= post.created_at.strftime("%b %d, %Y %H:%M") %></em></p>
+    <div>
+      <p>
+        <strong style="color: #3a3a99; font-size: 1.1em; letter-spacing: 1px;"><%= post.user.username %></strong>
+        (<%= post.visibility.capitalize %>)<br>
+        <small><em><%= post.created_at.strftime("%b %d, %Y %H:%M") %></em></small>
+      </p>
+    </div>
+   <div style="border: 5px solid #eee; border-radius: 5px; padding: 10px;">
+          <p style="text-shadow: 1px 1px 2px #212f4580;font-size: 1.4em; line-height: 1.4;background: #f7f6f3ff;"><%= post.content %></p>
 
-    <p><%= post.content %></p>
+          <p>
+            <div style="display: flex; flex-direction: row; gap: 24px;">
+              Likes: <%= post.likes.count  %>
+              <% like = current_user.likes.find_by(post_id: post.id) %>
+              <% if like %>
+                <%= button_to 'Unlike', like_path(like), method: :delete, style: "background-color: #e3d860ff;color: white;border-radius: 5px;padding: 5px 10px;" %>
+              <% else %>
+                <%= button_to 'Like', likes_path(post_id: post.id), method: :post, style: "background-color: #f31818ff;color: white;border-radius: 5px;padding: 5px 10px;" %>
+              <% end %>
+            </div>
+          </p>
+
+          <!-- Add comment form -->
+            <%= form_with url: comments_path(post_id: post.id), local: true do |f| %>
+              <%= f.text_area :content, placeholder: "Add a comment..." %>
+              <%= f.submit "Comment" %>
+            <% end %>
+
+            <!-- Comments Section -->
+            <div >
+              <strong>Comments:</strong>
+              <% post.comments.each do |comment| %>
+                <div style="border: 1px solid #eee; border-radius: 5px; padding: 10px;">
+                  <b><%= comment.user.username %>:</b>
+                <%= comment.content %>
+                <% if comment.user == current_user %>
+                  <%= button_to 'Delete', comment_path(comment), method: :delete %>
+                <% end %>
+              </div>
+            <% end %>
+            
+            
+          </div>
+   </div>
     <hr>
   </div>
 <% end %>

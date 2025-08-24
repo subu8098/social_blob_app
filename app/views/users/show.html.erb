@@ -1,8 +1,28 @@
 <h2>My Profile</h2>
+<div style="display:block; padding: 5px 0; box-shadow: 0 1px 3px rgba(4, 3, 53, 0.99);">
 <p>
   <strong>Email:</strong> <%= @user.email %><br>
-  <strong>Username:</strong> <%= @user.username %>
-</p>
+  <strong>Username:</strong> <%= @user.username %><br>
+</p>  
 
-<!-- Logout Button -->
-<%= button_to "Logout", logout_path, method: :delete, data: { confirm: "Are you sure you want to logout?" } %>
+<p style="display: flex; padding: 5px;">
+  <strong >Followers:</strong> <%= @user.followers.count %>
+  <strong style="margin-left: 10px;">Following:</strong> <%= @user.following.count %>
+</p>
+</div>
+
+<div style="margin-top: 20px;box-shadow: 0 1px 3px rgba(4, 3, 53, 0.99); padding: 10px;border-radius: 5px;">
+<h3>My Posts</h3>
+<% if @user.posts.any? %>
+  <% @user.posts.order(created_at: :desc).each do |post| %>
+    <div style="border-bottom: 2px solid #e64e4eff;">
+      <p><%= post.content %></p>
+      <small>
+        <%= post.visibility.capitalize %> | <%= post.created_at.strftime("%b %d, %Y %H:%M") %>
+      </small>
+    </div>
+  <% end %>
+<% else %>
+  <p>You have not posted anything yet.</p>
+<% end %>
+</div>
