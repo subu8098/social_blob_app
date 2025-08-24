@@ -16,6 +16,8 @@
     <% if current_user %>
       <a href="<%= profile_path %>" style="color: #fff; margin-right: 20px; text-decoration: none;">Profile</a>
       <a href="<%= posts_path %>" style="color: #fff; margin-right: 20px; text-decoration: none;">Feed</a>
+      <a href="<%= new_post_path %>" style="color: #fff; margin-right: 20px; text-decoration: none;">Create Post</a>
+
       <a href="<%= users_path %>" style="color: #fff; margin-right: 20px; text-decoration: none;">Explore Users</a>
       <%= button_to "Logout", logout_path, method: :delete, form: { style: "display: inline;" }, style: "background: #DD4B39; cursor: pointer; color: #fff; border: none; padding: 6px 12px; border-radius: 3px; margin-right: 20px;" %>
       <span style="color: #fff; margin-left: auto;">Logged in as:   <b style="color: #f04747ff;"><%= current_user.username %></b></span>
@@ -24,7 +26,7 @@
       <a href="<%= signup_path %>" style="color: #fff; margin-right: 20px; text-decoration: none;">Sign Up</a>
     <% end %>
   </nav>
-  <div style="max-width: 900px; margin: 30px auto; background: #fff; box-shadow: 10px 20px 60px #ddd; border-radius: 8px; padding: 20px;">
+  <div style="max-width: 900px; margin: 30px auto; background: #fff; box-shadow: 100px 20px 60px #ddd; border-radius: 8px; padding: 20px;">
     <%= yield %>
   </div>
 </body>

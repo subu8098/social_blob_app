@@ -1,11 +1,11 @@
 <h2>My Profile</h2>
 <div style="display:block; padding: 5px 0; box-shadow: 0 1px 3px rgba(4, 3, 53, 0.99);">
-<p>
+<p style="margin-left: 10px;">
   <strong>Email:</strong> <%= @user.email %><br>
   <strong>Username:</strong> <%= @user.username %><br>
 </p>  
 
-<p style="display: flex; padding: 5px;">
+<p style="display: flex; padding: 5px;margin-left: 10px;">
   <strong >Followers:</strong> <%= @user.followers.count %>
   <strong style="margin-left: 10px;">Following:</strong> <%= @user.following.count %>
 </p>

@@ -1,14 +1,18 @@
-<h2>Create Post</h2>
-<%= form_with model: @post do |f| %>
-  <div>
-    <%= f.label :content, "Your Story/Quote" %><br>
-    <%= f.text_area :content %>
-  </div>
-  <div>
-    <%= f.label :visibility, "Visibility" %><br>
-    <%= f.select :visibility, [["Public", "public"], ["Private", "private"]] %>
-  </div>
-  <div>
-    <%= f.submit "Post" %>
-  </div>
+<h2 style="color: #3a3a99; text-align: center; margin-bottom: 20px;">Create Post</h2>
+
+  <%= form_with model: @post do |f| %>
+  <div style="text-align: center;">
+    <div>
+      <%= f.label :content, "Your Story/Quote" ,style: "font-weight: bold; color: #333;" %><br>
+      <%= f.text_area :content ,style: "width: 50%; height: 50px; border: 1px solid #ccc; border-radius: 4px; padding: 10px;" %>
+    </div>
+
+    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px 0;">
+      <%= f.label :visibility, "Visibility", style: "font-weight: bold; color: #333;" %>
+      <%= f.select :visibility, [["Public", "public"], ["Private", "private"]] %>
+    </div>
+    <div>
+      <%= f.submit "Post" ,style: "background-color: #3a3a99; color: white; border: none; border-radius: 4px; padding: 8px 20px; cursor: pointer;" %>
+    </div>
+</div>
 <% end %>
