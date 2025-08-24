@@ -1,0 +1,10 @@
+<h2 style="background-color: #ff56;"><i>Feed</i></h2>
+<% @posts.each do |post| %>
+  <div class="post-box">
+    <p><strong><%= post.user.username %></strong> (<%= post.visibility.capitalize %>)<br>
+    <em><%= post.created_at.strftime("%b %d, %Y %H:%M") %></em></p>
+
+    <p><%= post.content %></p>
+    <hr>
+  </div>
+<% end %>

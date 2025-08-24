@@ -1,0 +1,8 @@
+<h2>My Profile</h2>
+<p>
+  <strong>Email:</strong> <%= @user.email %><br>
+  <strong>Username:</strong> <%= @user.username %>
+</p>
+
+<!-- Logout Button -->
+<%= button_to "Logout", logout_path, method: :delete, data: { confirm: "Are you sure you want to logout?" } %>

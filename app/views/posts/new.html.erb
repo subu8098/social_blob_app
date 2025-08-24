@@ -1,0 +1,14 @@
+<h2>Create Post</h2>
+<%= form_with model: @post do |f| %>
+  <div>
+    <%= f.label :content, "Your Story/Quote" %><br>
+    <%= f.text_area :content %>
+  </div>
+  <div>
+    <%= f.label :visibility, "Visibility" %><br>
+    <%= f.select :visibility, [["Public", "public"], ["Private", "private"]] %>
+  </div>
+  <div>
+    <%= f.submit "Post" %>
+  </div>
+<% end %>

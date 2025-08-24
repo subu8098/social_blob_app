@@ -1,0 +1,12 @@
+<h2>Explore Users</h2>
+<% @users.each do |user| %>
+  <div>
+    <strong><%= user.username %></strong>
+    <% if current_user.following.include?(user) %>
+      <%= button_to "Unfollow", relationship_path(current_user.active_relationships.find_by(followed_id: user.id)), method: :delete %>
+    <% else %>
+      <%= button_to "Follow", relationships_path(followed_id: user.id), method: :post %>
+    <% end %>
+  </div>
+  <hr>
+<% end %>
