@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  get 'comments/create'
-  get 'comments/destroy'
-  get 'likes/create'
-  get 'likes/destroy'
-  get 'relationships/create'
-  get 'relationships/destroy'
+  # get 'comments/create'
+  # get 'comments/destroy'
+  # get 'likes/create'
+  # get 'likes/destroy'
+  # get 'relationships/create'
+  # get 'relationships/destroy'
   root "sessions#new"
   get "/signup", to: "users#new"
   post "/signup", to: "users#create"
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get "/profile", to: "users#show"
   get '/users', to: 'users#index'
 
-  resources :posts, only: [:new, :create, :index]
+  resources :posts, only: [:new, :create, :index, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :likes, only: [:create, :destroy]
   resources :comments, only: [:create, :destroy]

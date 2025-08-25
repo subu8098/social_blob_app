@@ -12,11 +12,12 @@
 </div>
 
 <div style="margin-top: 20px;box-shadow: 0 1px 3px rgba(4, 3, 53, 0.99); padding: 10px;border-radius: 5px;">
-<h3>My Posts</h3>
+<h3 style="color: #3a3a99;  margin-bottom: 20px;">My Posts</h3>
 <% if @user.posts.any? %>
   <% @user.posts.order(created_at: :desc).each do |post| %>
     <div style="border-bottom: 2px solid #e64e4eff;">
-      <p><%= post.content %></p>
+      <p  style="text-shadow: 1px 1px 2px #212f4580;font-size: 1.2em; line-height: 1.4;background: #f7f6f3ff;" ><%= post.content %></p>
+      <%= button_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, style: "background-color: #f06464ff; color: white; border-radius: 5px; padding: 5px 10px; font-size: 0.9em; margin-bottom: 5px;" %>
       <small>
         <%= post.visibility.capitalize %> | <%= post.created_at.strftime("%b %d, %Y %H:%M") %>
       </small>

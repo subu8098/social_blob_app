@@ -20,7 +20,16 @@ class PostsController < ApplicationController
     @posts = Post.where("visibility = ? OR (visibility = ? AND user_id IN (?))", "public", "private", followed_ids)
             .order(created_at: :desc)
   end
-
+  
+  def destroy
+    @post = Post.find(params[:id])
+    if @post.user == current_user
+      @post.destroy
+      redirect_to posts_path, notice: "Post deleted successfully."
+    else
+      redirect_to posts_path, alert: "You can only delete your own posts."
+    end
+  end
 
   private
 

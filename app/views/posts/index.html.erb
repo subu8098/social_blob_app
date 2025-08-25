@@ -7,13 +7,13 @@
           (<%= post.visibility.capitalize %>)<br>
           <small><em><%= post.created_at.strftime("%b %d, %Y %H:%M") %></em></small>
         </p>
-
-        <% if !current_user.following.include?(post.user) %>
-          <%= button_to 'Follow', relationships_path(followed_id: post.user.id), method: :post, style: "background-color: #3a3a99; color: white; border-radius: 5px; padding: 5px 18px; font-size: 1em; font-weight: bold;" %>
-        <% else %>
-          <span style="display: inline-block; font-weight: bold; color: #3a3a99; background: #e7da54ff; border: 2px solid #e7da54ff; border-radius: 5px; padding: 5px 18px; font-size: 1em;">Following</span>
+      <% if post.user != current_user %>
+          <% if !current_user.following.include?(post.user) %>
+            <%= button_to 'Follow', relationships_path(followed_id: post.user.id), method: :post, style: "background-color: #3a3a99; color: white; border-radius: 5px; padding: 5px 18px; font-size: 1em; font-weight: bold;" %>
+          <% else %>
+            <span style="display: inline-block; font-weight: bold; color: #3a3a99; background: #e7da54ff; border: 2px solid #e7da54ff; border-radius: 5px; padding: 5px 18px; font-size: 1em;">Following</span>
+          <% end %>
         <% end %>
-
       </div>
 
      <div style="border: 5px solid #eee; border-radius: 5px; padding: 10px;">
